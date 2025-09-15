@@ -1,2 +1,3 @@
 --- CODE BASIC TUTORIAL ---
-Step: Please remove comment to run-code
+Step01: Open file
+Step02: Please remove comment to run-code
