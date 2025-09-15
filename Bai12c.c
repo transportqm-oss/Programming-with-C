@@ -95,6 +95,86 @@ int main(){
 //	
 //	//Output result
 //	printf("Concatened string: %s\n", str1);
+
+	/*
+		Write a program to reverse a character array using pointers
+//	*/
+//	//declare value
+//	char str[100];
+//	char *start, *end, temp;
+//	
+//	//input string
+//	printf("Enter a string: ");
+//	scanf("%s", str);
+//	
+//	//set pointers
+//	start = str; //point to first character
+//	end = str + strlen(str) - 1; //point to last character
+//	
+//	//reverse in place
+//	while(start < end){
+//		//swap characters
+//		temp = *start;
+//		*start = *end;
+//		*end = temp;
+//		
+//		//move pointers
+//		start++;
+//		end--;
+//	}
+//	
+//	// output reversed string
+//	printf("Reversed string: %s\n", str);
+//
+//	/*
+//		Write a program to add to matrices using pointers
+//	*/
+//	//declare rows and column
+//	int m, n;
+//	printf("Enter number of rows and colums: ");
+//	scanf("%d %d", &m, &n);
+//	
+//	//declare array and pointer
+//	int a[m][n], b[m][n], sum[m][n];
+//	int *p1, *p2, *pSum;
+//	
+//	//declare temp i, j
+//	int i, j;
+//	//input matrix A
+//	printf("Enter elements of matrix A: \n");
+//	for(i = 0; i < m; i++){
+//		for(j = 0; j < n; j++){
+//			scanf("%d", &a[i][j]);
+//		}
+//	}
+//	
+//	//input matrix B
+//	printf("Enter elements of matrix B: \n");
+//	for(i = 0; i < m; i++){
+//		for(j = 0; j < n; j++){
+//			scanf("%d", &b[i][j]);
+//		}
+//	}
+//	
+//	//initialize pointers
+//	p1 = &a[0][0];
+//	p2 = &b[0][0];
+//	pSum = &sum[0][0];
+//	
+//	//add matrices using pointers
+//	for(i = 0; i < m * n; i++){
+//		*(pSum + i) = *(p1 + i) + *(p2 + i);
+//	}
+//	
+//	//display result
+//	printf("Sum of the two matrices: \n");
+//	for(i = 0; i < m; i++){
+//		for(j = 0; j < n; j++){
+//			printf("%d ", sum[i][j]);
+//		}
+//		printf("\n");
+//	}
+	
 	
 	return 0;
 }
