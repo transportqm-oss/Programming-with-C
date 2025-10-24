@@ -94,6 +94,11 @@ int main(){
 	*/
 	
 	/*
+		Syntax for Storage Classes
+			storage_specifier type var_name
+	*/
+	
+	/*
 		Example 01: Define parameter and argument
 	*/
 	int x = 5;
@@ -107,6 +112,8 @@ int main(){
 	printf("First value of global variable: %d\n", count);
 	increase();
 	printf("Second value of global variable: %d\n", count);
+	
+	
 	
 	return 0;
 }
