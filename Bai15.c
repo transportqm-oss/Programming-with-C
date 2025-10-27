@@ -113,8 +113,60 @@ int main(){
 	increase();
 	printf("Second value of global variable: %d\n", count);
 	
+	/*
+		Define: Exterm Variable
+		int count = 10; // dinh nghia bien, trinh bien dich se tao vung bo nho thuc su cho bien
+		extern int count; // khai bao bien, chi bao rang bien nay da duoc dinh nghia o 01 noi khac
+	*/
 	
+	/*
+		Example 02: Compare automatic variable with static variable in C
+	*/
+	incre();
+	incre();
+	incre();
+	
+	incre01();
+	incre01();
+	incre01();
+	
+	/*
+		Example 03: Call by Value
+	*/
+	int n1, n2, n3;
+	n1 = n2 = n3 = 0;
+	
+	printf("Enter 1st integer: \n");
+	scanf("%d", &n1);
+	printf("Enter 2nd integer: \n");
+	scanf("%d", &n2);
+	
+	n3 = adder(n1, n2);
+	
+	printf("n1 & n2 in main() are: %d, %d\n", n1, n2);
+	printf("n3 in main() is: %d", n3);
+	//n3 gives the addtion of n1 and n2
 	
 	return 0;
+}
+
+int adder(int n1, int n2){
+	int n3;
+	n3 = n1 + n2;
+	n1 *= n1;
+	n2 += 5;
+	printf("n1 & n2 within adder function are: %d, %d\n", n1, n2);
+	printf("n3 within adder function is: %d\n", n3);
+	return (n3);
+}
+
+int incre(){
+	char var = 65; // var is automatic variable
+	printf("The character stored in var is: %c\n", var++);
+}
+
+int incre01(){
+	static char var = 65; // var is static variable
+	printf("The character stored in var is: %c\n", var++);
 }
 
