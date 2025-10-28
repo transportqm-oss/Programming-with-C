@@ -4,17 +4,26 @@
 #include<stdlib.h>
 
 
-// khai bao 01 bien toan cuc
-int count = 0;
-// ham increase minh hoa cho bien toan cuc
-int increase(){
-	count++; //gia tri nay co the duoc truy cap tu moi ham
-}
+//// khai bao 01 bien toan cuc
+//int count = 0;
+//// ham increase minh hoa cho bien toan cuc
+//int increase(){
+//	count++; //gia tri nay co the duoc truy cap tu moi ham
+//}
 
-// ham co 2 tham so: a va b
-int add(int a, int b){
-	return a + b;
-}
+//// ham co 2 tham so: a va b
+//int add(int a, int b){
+//	return a + b;
+//}
+
+//// khai bao ham cho example 03
+//int swap(int u, int v){
+//	int temp;
+//	temp = u;
+//	u = v;
+//	v = temp;
+//	return;
+//}
 
 int main(){
 	/*
@@ -101,17 +110,17 @@ int main(){
 	/*
 		Example 01: Define parameter and argument
 	*/
-	int x = 5;
-	int y = 10;
-	int result = add(x, y);	// x va y la doi so, duoc tham chieu tuong ung voi a va b
-	printf("Sumf of number: %d\n", result);
+//	int x = 5;
+//	int y = 10;
+//	int result = add(x, y);	// x va y la doi so, duoc tham chieu tuong ung voi a va b
+//	printf("Sumf of number: %d\n", result);
 	
 	/*
 		Example 02: Define Global variable
 	*/
-	printf("First value of global variable: %d\n", count);
-	increase();
-	printf("Second value of global variable: %d\n", count);
+//	printf("First value of global variable: %d\n", count);
+//	increase();
+//	printf("Second value of global variable: %d\n", count);
 	
 	/*
 		Define: Exterm Variable
@@ -122,51 +131,60 @@ int main(){
 	/*
 		Example 02: Compare automatic variable with static variable in C
 	*/
-	incre();
-	incre();
-	incre();
-	
-	incre01();
-	incre01();
-	incre01();
+//	incre();
+//	incre();
+//	incre();
+//	
+//	incre01();
+//	incre01();
+//	incre01();
 	
 	/*
 		Example 03: Call by Value
 	*/
-	int n1, n2, n3;
-	n1 = n2 = n3 = 0;
-	
-	printf("Enter 1st integer: \n");
-	scanf("%d", &n1);
-	printf("Enter 2nd integer: \n");
-	scanf("%d", &n2);
-	
-	n3 = adder(n1, n2);
-	
-	printf("n1 & n2 in main() are: %d, %d\n", n1, n2);
-	printf("n3 in main() is: %d", n3);
+//	int n1, n2, n3;
+//	n1 = n2 = n3 = 0;
+//	
+//	printf("Enter 1st integer: \n");
+//	scanf("%d", &n1);
+//	printf("Enter 2nd integer: \n");
+//	scanf("%d", &n2);
+//	
+//	n3 = adder(n1, n2);
+//	
+//	printf("n1 & n2 in main() are: %d, %d\n", n1, n2);
+//	printf("n3 in main() is: %d", n3);
 	//n3 gives the addtion of n1 and n2
+	
+	/*
+		Example 04: Call by Reference
+	*/	
+//	int x, y;
+//	x = 15; y = 20;
+//	printf("x = %d || y = %d\n", x, y);
+//	swap(x, y);
+//	printf("After interchanging: x = %d || y = %d\n", x, y);
 	
 	return 0;
 }
 
-int adder(int n1, int n2){
-	int n3;
-	n3 = n1 + n2;
-	n1 *= n1;
-	n2 += 5;
-	printf("n1 & n2 within adder function are: %d, %d\n", n1, n2);
-	printf("n3 within adder function is: %d\n", n3);
-	return (n3);
-}
-
-int incre(){
-	char var = 65; // var is automatic variable
-	printf("The character stored in var is: %c\n", var++);
-}
-
-int incre01(){
-	static char var = 65; // var is static variable
-	printf("The character stored in var is: %c\n", var++);
-}
+//int adder(int n1, int n2){
+//	int n3;
+//	n3 = n1 + n2;
+//	n1 *= n1;
+//	n2 += 5;
+//	printf("n1 & n2 within adder function are: %d, %d\n", n1, n2);
+//	printf("n3 within adder function is: %d\n", n3);
+//	return (n3);
+//}
+//
+//int incre(){
+//	char var = 65; // var is automatic variable
+//	printf("The character stored in var is: %c\n", var++);
+//}
+//
+//int incre01(){
+//	static char var = 65; // var is static variable
+//	printf("The character stored in var is: %c\n", var++);
+//}
 
