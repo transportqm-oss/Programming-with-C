@@ -3,19 +3,27 @@
 #include<string.h>
 
 //declare function for Example 01
-int swap_value(int a, int b){
+void swap_value(int a, int b){
 	int temp = a;
 	a = b;
 	b = temp;
-	printf("Trong ham swap_blue: a = %d, b = %d\n", a, b);
+	printf("Swap_value before call have: a = %d, b = %d\n", a, b);
 }
 
 //declare function for Example 02
-int swap_reference(int *a, int *b){
+void swap_reference(int *a, int *b){
 	int temp = *a;
 	*a = *b;
 	*b = temp;
-	printf("Trong ham swap_reference: *a = %d, *b = %d\n", *a, *b);
+	printf("Swap_reference before call have: *a = %d, *b = %d\n", *a, *b);
+}
+//declare function for Example 03
+int square(int n){
+	return n * n;
+}
+
+int add(int a, int b){
+	return a + b;
 }
 
 int main(){
@@ -27,7 +35,7 @@ int main(){
 	*/
 	int x = 10, y = 20;
 	swap_value(x, y);
-	printf("After call function swap_value: x = %d, y = %d\n", x, y);
+	printf("After swap_value have: x = %d, y = %d\n", x, y);	
 	
 	/*
 		Call by Reference: truyen bang tham chieu
@@ -37,8 +45,19 @@ int main(){
 	*/
 	int x1 = 10, y1 = 20;
 	swap_reference(&x1, &y1);
-	printf("After call function swap_reference: x1 = %d, y1 = %d", x1, y1);
+	printf("After swap_reference have: x1 = %d, y1 = %d\n", x1, y1);
 	//bien x1, y1 da bi thay doi - vi ham nhan dia chi, khong phai ban sao
+	
+	/*
+		Call by Nesting of Function
+		- Goi mot ham ben trong loi goi cua ham khac
+		- Ket qua tra ve cua ham duoc dung la tham so cho ham khac
+	*/
+	int n1 = 2, n2 = 3;
+	int result;
+	result = square(add(n1, n2));
+	printf("Ket qua la: %d\n", result);
+	// Goi long nhau: square(add(2, 3))
 	
 	
 	return 0;
