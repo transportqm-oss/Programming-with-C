@@ -70,6 +70,30 @@ int main(){
 	/*
 		3. location a character in string: The 'strchr()' function
 	*/
+	char str1[15] = "New York";
+	char str2[15] = "Washington";
+	char chr = 'a';
+	char *loc;
+	
+	//TH1
+	loc = strchr(str1, chr); //check for the occurence of the character value hold by chr in the first city name
+	if(loc != NULL){
+		printf("%c occurs in %s\n", chr, str1);
+	}else{
+		printf("%c does not occur in %s\n", chr, str1);
+	}
+	//TH2
+	loc = strchr(str2, chr);
+	if(loc != NULL){
+		printf("%c occurs in %s\n", chr, str2);
+	}else{
+		printf("%c does not occur in %s\n", chr, str2);
+	}
+	/*
+		4. copying one string to another: The 'strcpy()' function
+	*/
+	char hotelname1[15] = "Sea View";
+	char hotelname2[15] = "Sea Link";
 
 	return 0;
 }
