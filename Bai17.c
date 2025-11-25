@@ -3,33 +3,58 @@
 #include<string.h>
 
 //declare function input value - Passing Arrays to Functions
-void inputArray(int arr[], int *size){
-	printf("please enter value size of array: \n");
-	scanf("%d", size);
-	
-	int i;
-	for(i = 0; i < *size; i++){
-		printf("please enter value at [%d]: ", i);
-		scanf("%d", &arr[i]);
-	}
-}
+//void inputArray(int arr[], int *size){
+//	printf("please enter value size of array: \n");
+//	scanf("%d", size);
+//	
+//	int i;
+//	for(i = 0; i < *size; i++){
+//		printf("please enter value at [%d]: ", i);
+//		scanf("%d", &arr[i]);
+//	}
+//}
 
 //declare function print value - Passing Arrays to Functions
-void printArray(int arr[], int size){
-	int i;
-	printf("the list number of array: \n");
-	for(i = 0; i < size; i++){
-		printf("%d\n", arr[i]);
-	}
-}
+//void printArray(int arr[], int size){
+//	int i;
+//	printf("the list number of array: \n");
+//	for(i = 0; i < size; i++){
+//		printf("%d\n", arr[i]);
+//	}
+//}
 
 //declare function sumArray - Passing Arrays to Functions
-int sumArray(int arr[], int size){
-	int i, sum = 0;
-	for(i = 0; i < size; i++){
-		sum += arr[i];
+//int sumArray(int arr[], int size){
+//	int i, sum = 0;
+//	for(i = 0; i < size; i++){
+//		sum += arr[i];
+//	}
+//	return sum;
+//}
+
+//declare function: Passing Arrays to Functions 02
+//function definition
+//int sum_arr(int num_arr[]){
+//	int i, total;
+//	for(i = 0, total = 0; i < 5; i++){
+//		total += num_arr[i];
+//	}
+//	return total;
+//}
+
+//declara function: Passing Strings to Functions
+int longest(char lines_arr[][20]){
+	int i = 0, l_ctr = 0, prev_len, new_len;
+	prev_len = strlen(lines_arr[i]);
+	//determine the lenght of the first element
+	for(i++; i < 5; i++){
+		new_len = strlen(lines_arr[i]);
+		if(new_len > prev_len){
+			l_ctr = i;
+			prev_len = new_len;
+		}
 	}
-	return sum;
+	return l_ctr;
 }
 
 
@@ -162,20 +187,47 @@ int main(){
 	/*
 		Passing Arrays to Functions
 	*/
-	int arr[100];
-	int size;
-	
-	inputArray(arr, &size);
-	printArray(arr, size);
-	
-	int result = sumArray(arr, size);
-	printf("Sum of array: %d\n", result);
+//	int arr[100];
+//	int size;
+//	
+//	inputArray(arr, &size);
+//	printArray(arr, size);
+//	
+//	int result = sumArray(arr, size);
+//	printf("Sum of array: %d\n", result);
 
 
 	/*
 		Passing Arrays to Functions 02
 	*/
-	
+//	int num[5], ctr;
+//	int sum = 0;
+//	int sum_arr(int num_arr[]); //function declaration
+//	
+//	//accept number into the array
+//	for(ctr = 0; ctr < 5; ctr++){
+//		printf("Enter number %d: ", ctr + 1);
+//		scanf("%d", &num[ctr]);
+//	}
+//	
+//	sum = sum_arr(num); //invokes the function
+//	printf("The sum of the array is %d\n", sum);
+//	getch();
+
+	/*
+		Passing Strings to Functions
+	*/
+	char lines[5][20];
+	int ctr, longctr = 0;
+	int longest(char lines_arr[][20]);
+	//function declaration, accepts string value into the array
+	for(ctr = 0; ctr < 5; ctr++){
+		printf("enter string %d: ", ctr + 1);
+		scanf("%s", lines[ctr]);
+	}
+	longctr = longest(lines);
+	//passes the array to the function
+	printf("the longest string is %s: ", lines[longctr]);
 	
 	return 0;
 }
