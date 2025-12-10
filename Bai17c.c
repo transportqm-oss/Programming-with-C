@@ -14,12 +14,30 @@
 //}
 
 //declara function: Convert a character array to upper case using functions 01
-void uppername(char name_arr[]){
-	int x;
+//void uppername(char name_arr[]){
+//	int x;
+//	
+//	for(x = 0; name_arr[x] != '\0'; x++){
+//		name_arr[x] = toupper(name_arr[x]);
+//	}
+//}
+
+//declara function: counter
+int countCharacter(char str[], char ch);
+
+//defination function: counter
+int countCharacter(char str[], char ch){
+	int count = 0;
+	int i;
 	
-	for(x = 0; name_arr[x] != '\0'; x++){
-		name_arr[x] = toupper(name_arr[x]);
+	//check each character
+	for(i = 0; str[i] != '\0'; i++){
+		if(str[i] == ch){
+			count++;
+		}
 	}
+	
+	return count; //return the count to main()
 }
 
 int main(){
@@ -70,17 +88,44 @@ int main(){
 		Convert a character array to upper case using functions
 		Using: library <ctype.h>
 	*/
-	char names[5][20];
-	int i;
-	//input
+//	char names[5][20];
+//	int i;
+//	//input
+//	for(i = 0; i < 5; i++){
+//		printf("Enter string [%d]: ", i + 1);
+//		scanf("%19s", names[i]);
+//	}
+//	//display list string after call function uppername
+//	for(i = 0; i < 5; i++){
+//		uppername(names[i]);
+//		printf("New String [%d]: %s\n", i + 1, names[i]);
+//	}
+
+	/*
+		Write a C program to display the number of times a specified character occurs in a string.
+		Set a loop to perform the operation 5 times	
+	*/
+	char str[100]; // character array
+	char ch; // character variable
+	int i, result;
+	
+	//loop 5 times
 	for(i = 0; i < 5; i++){
-		printf("Enter string [%d]: ", i + 1);
-		scanf("%19s", names[i]);
-	}
-	//display list string after call function uppername
-	for(i = 0; i < 5; i++){
-		uppername(names[i]);
-		printf("New String [%d]: %s\n", i + 1, names[i]);
+		printf("\n---- Operation %d ----\n", i);
+		
+		//accept string
+		printf("Enter a string: ");
+		scanf("%s", str);
+		
+		//accept character
+		printf("Enter a character to search for: ");
+		scanf(" %c", &ch); // space before %c ignores newline
+		
+		//call the function
+		result = countCharacter(str, ch);
+		
+		//display the result
+		printf("The character '%c' appears %d times in \"%s\".\n", ch, result, str);
 	}
 	
 	return 0;
