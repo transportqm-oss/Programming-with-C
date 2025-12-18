@@ -34,6 +34,6 @@ int main(){
 	float average = calcAverage(arr, n);
 	
 	printf("Average = %.2f\n", average); // print with 2 decimal places
-	
+
 	return 0;
 }

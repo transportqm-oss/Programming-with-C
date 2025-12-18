@@ -1,10 +1,10 @@
 #include <stdio.h>
 #include <string.h>
 
-#define NUM_STR 5      // s? lu?ng chu?i
-#define MAX_LEN 20     // d? dài t?i da m?i chu?i
+#define NUM_STR 5      // so luong chuoi
+#define MAX_LEN 20     // do dai toi da moi chuoi
 
-// Hàm tìm chu?i dài nh?t
+// Ham tim chuoi dai nhat
 int findLongestStringIndex(char arr[][MAX_LEN]) {
     int longestIndex = 0;
     int maxLength = strlen(arr[0]);
@@ -28,16 +28,16 @@ int main() {
     
     int i;
 
-    // Nh?p chu?i t? ngu?i dùng
+    // Nhap chuoi tu nguoi dung
     for (i = 0; i < NUM_STR; i++) {
         printf("Nhap chuoi %d: ", i + 1);
-        scanf("%19s", lines[i]);  // d?m b?o không tràn b? nh?
+        scanf("%19s", lines[i]);  // dam bao khong tran bo nho
     }
 
-    // Tìm chu?i dài nh?t
+    // Tim chuoi dai nhat
     int longestIndex = findLongestStringIndex(lines);
 
-    // In k?t qu?
+    // In ket qua
     printf("\nChuoi dai nhat la: \"%s\"\n", lines[longestIndex]);
 
     return 0;

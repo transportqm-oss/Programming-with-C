@@ -23,21 +23,32 @@
 //}
 
 //declara function: counter
-int countCharacter(char str[], char ch);
+//int countCharacter(char str[], char ch){
+//	int count = 0;
+//	int i;
+//	
+//	//check each character
+//	for(i = 0; str[i] != '\0'; i++){
+//		if(str[i] == ch){
+//			count++;
+//		}
+//	}
+//	
+//	return count; //return the count to main()
+//}
 
-//defination function: counter
-int countCharacter(char str[], char ch){
-	int count = 0;
+//declara function: addPrefix
+void addPrefix(char name[5][50], char prefix[]);
+
+void addPrefix(char name[5][50], char prefix[]){
 	int i;
+	char temp[50];
 	
-	//check each character
-	for(i = 0; str[i] != '\0'; i++){
-		if(str[i] == ch){
-			count++;
-		}
+	for(i = 0; i < 5; i++){
+		strcpy(temp, name[i]);		//save original name
+		strcpy(name[i], prefix);    //copy prefix
+		strcat(name[i], temp);      //add original name after prefix
 	}
-	
-	return count; //return the count to main()
 }
 
 int main(){
@@ -105,27 +116,57 @@ int main(){
 		Write a C program to display the number of times a specified character occurs in a string.
 		Set a loop to perform the operation 5 times	
 	*/
-	char str[100]; // character array
-	char ch; // character variable
-	int i, result;
+	//declare array and variable
+//	char str[100];
+//	char ch;
+//	int i, result;
+//	
+//	//declara loop 05 times
+//	for(i = 0; i < 5; i++){
+//		printf("\n---- Operation %d ----\n", i + 1);
+//		
+//		//accept string
+//		printf("Enter a string: ");
+//		scanf("%s", str);
+//		
+//		//accept character
+//		printf("Enter a character to search for: ");
+//		scanf(" %c", &ch); //space before %c ignores new line
+//		
+//		//call the function
+//		result = countCharacter(str, ch);
+//		
+//		//display the result
+//		printf("The character '%c' appears  %d times in \"%s\".\n", ch, result, str);
+//	}
+
+	/*
+		Write a C Program to accept 5 names and a prefix. Insert the prefix at the beginning of each
+		name in the array. Display the modified names.
+		Note: One prefix apply to all.
+	*/
+	//declara array and character
+	char name[5][50];
+	char prefix[20];
+	int i;
 	
-	//loop 5 times
+	//input 05 names
 	for(i = 0; i < 5; i++){
-		printf("\n---- Operation %d ----\n", i);
-		
-		//accept string
-		printf("Enter a string: ");
-		scanf("%s", str);
-		
-		//accept character
-		printf("Enter a character to search for: ");
-		scanf(" %c", &ch); // space before %c ignores newline
-		
-		//call the function
-		result = countCharacter(str, ch);
-		
-		//display the result
-		printf("The character '%c' appears %d times in \"%s\".\n", ch, result, str);
+		printf("Enter name at [%d]: ", i + 1);
+		scanf("%s", name[i]);
+	}
+	
+	//input prefix
+	printf("Enter prefix: ");
+	scanf("%s", prefix);
+	
+	//call function
+	addPrefix(name, prefix);
+	
+	//display modified names
+	printf("\nNames after adding prefix: \n");
+	for(i = 0; i < 5; i++){
+		printf("%s\n", name[i]);
 	}
 	
 	return 0;
