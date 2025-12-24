@@ -121,6 +121,16 @@ void swap_value(int a, int b){
 	printf("The list value before call by value: a = %d, b = %d\n", a, b);
 }
 
+//-----------------------------------------------------//
+//declare function: call by reference
+void swap_reference(int *a, int *b){
+	int temp = *a;
+	*a = *b;
+	*b = temp;
+	
+	printf("The list value before call by valueL *a = %d, *b = %d\n", *a, *b);
+}
+
 int main(){
 	printf("-------------------!!!-------------------\n");
 	/*
@@ -189,16 +199,23 @@ int main(){
 	
 	printf("-------------------!!!-------------------\n");
 	/*
-		Example call by value
+		Example: call by value
 	*/
 	//declare value
 	int x1 = 10, y1 = 20;
 	swap_value(x1, y1);
 	printf("The list number after call by value: x1 = %d, y1 = %d\n", x1, y1);
 	
+	printf("-------------------!!!-------------------\n");
+	/*
+		Example: call by reference
+	*/
+	//declare value
+	int x2 = 10, y2 = 20;
+	swap_reference(&x2, &y2);
+	printf("The list number after call by reference: x2 = %d, y2 = %d\n", x2, y2);
 	
 	printf("-------------------!!!-------------------\n");
-	
 	
 	return 0;
 }
