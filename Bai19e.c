@@ -1,44 +1,66 @@
-#include<stdio.h>
-#include<conio.h>
+#include <stdio.h>
 #include<string.h>
+#include<conio.h>
 
-/*DECLARE TYPEDEF STRUCTURE*/
 typedef struct{
-	char name[20];
+	char fullname[50];
 	int age;
-	float score;
-} Student;
+	float kpi;
+	double salary;
+} Employee;
 
-/*DECLARE FUNCTION*/
-void inputlist(Student *list, int n){
+// ham in duong ke
+void printLine(){
+	printf("+------------------------------+--------+--------+------------+\n");
+}
+
+// ham nhap du lieu
+void inputlist(Employee *list, int n){
 	int i;
 	
 	for(i = 0; i < n; i++){
-		printf("\n----------Student at [%d]: ----------\n", i + 1);
-		printf("Name: ");
-		scanf(" %[^\n]", list[i].name);
+		printf("\n--------Employe at [%d]: --------\n", i + 1);
+		printf("Fullname: ");
+		scanf(" %[^\n]", list[i].fullname);
 		printf("Age: ");
 		scanf("%d", &list[i].age);
-		printf("Score: ");
-		scanf("%f", &list[i].score);
+		printf("Kpi: ");
+		scanf("%f", &list[i].kpi);
+		printf("Salary: ");
+		scanf("%lf", &list[i].salary);
 	}
 }
 
-void displaylist(Student *list, int n){
-	printf("\n|%-10s | %-6s | %-5s\n", "NAME", "AGE", "SCORE");
-	
+// ham hien thi bang
+void displayTable(Employee *list, int n){
 	int i;
+
+	printLine();
+	printf("| %-28s | %-6s | %-6s | %-10s |\n", "FULLNAME", "AGE", "KPI", "SALARY");
+	printLine();
+
 	for(i = 0; i < n; i++){
-		printf("|%-10s | %-6d | %.1f\n", list[i].name, list[i].age, list[i].score);
+		printf("| %-28s | %-6d | %-6.1f | %-10.1lf |\n",
+			list[i].fullname,
+			list[i].age,
+			list[i].kpi,
+			list[i].salary);
 	}
+
+	printLine();
 }
 
-Student *find_maxscore(Student *list, int n){
-	Student *max = &list[0];
+// ham tim max_salary
+Employee *find_maxsalary(Employee *list, int n){
+	if(list == NULL || n <= 0){
+		printf("[ERROR] List employee is empty !!!\n");
+	}
+	
+	Employee *max = &list[0];
 	
 	int i;
 	for(i = 0; i < n; i++){
-		if(list[i].score > max->score){
+		if(list[i].salary > max->salary){
 			max = &list[i];
 		}
 	}
@@ -47,20 +69,25 @@ Student *find_maxscore(Student *list, int n){
 }
 
 int main(){
-	//declare value
+//	int n = 2;
+//
+//	Employee emp[2] = {
+//		{"Nguyen Van A", 25, 8.5, 1200},
+//		{"Tran Thi B", 30, 9.0, 1500}
+//	};
+
 	int n;
-	printf("please enter number of list student: ");
+	printf("Enter number of list employee: ");
 	scanf("%d", &n);
 	
-	//declare array - VLA - khai bao mang kich thuoc dong
-	Student st[n];
-	
+	Employee emp[n];
+
 	//call function
-	inputlist(st, n);
-	displaylist(st, n);
-	
-	Student *maxscore = find_maxscore(st, n);
-	printf("\nThe Student have score maximum in class: %s | %.2lf\n", maxscore->name, maxscore->score);
-	
+	inputlist(emp, n);
+	displayTable(emp, n);
+
+	Employee *max = find_maxsalary(emp, n);
+	printf("\nEmployee have maximum salary is: %s | (%.1lf)\n", max->fullname, max->salary);
+
 	return 0;
 }
