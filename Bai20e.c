@@ -2,6 +2,34 @@
 #include<conio.h>
 #include<string.h>
 
+/*
+	#include / #define
+        |
+	typedef struct Date     -> month, day, year
+        |
+	typedef struct Employee -> id, name, salary, Date joined
+        |
+	prototypes
+        |
+	global array + total
+        |
+	main() -> menu loop
+        |
+	inputEmployees()   -> input info employee
+        |
+	increaseSalary()   -> increase the salaries by rule
+		|
+		|	Salary Range <= 2000 ~ 15%
+		|	Salary Range > 2000 and <= 5000 ~ 10%
+		|	Salary Range > 5000 ~ no increase
+        |
+	display10Years()   -> display all employee complete 10 years with the companay
+        |
+	displayHeader()    -> helper print Header
+        |
+	displayEmployee()  -> helper display 01 employee
+*/
+
 #define MAX 100
 
 //a. Define structure: DATE (nested)
@@ -16,15 +44,15 @@ typedef struct {
 	int emp_id;
 	char name[50];
 	float salary;
-	Date joined; // nested structure: joined.month/day/year
+	Date joined;	// nested structure
 } Employee;
 
-//c. Declare prototye
-void inputEmployee(Employee list[], int *n);
+//c. Declare prototype
+void inputEmployees(Employee list[], int *n);
 void increaseSalary(Employee list[], int n);
 void display10Years(Employee list[], int n);
 void displayHeader();
-void displayEmployee(Employee);
+void displayEmployee(Employee e);
 
 //d. Declare Global array + total
 Employee employees[MAX];
@@ -49,7 +77,7 @@ int main() {
 
 		switch(choice) {
 			case 1:
-				inputEmployee(employees, &total);
+				inputEmployees(employees, &total);
 				break;
 			case 2:
 				increaseSalary(employees, total);
@@ -61,14 +89,14 @@ int main() {
 				printf("\n  Goodbye!\n\n");
 				break;
 			default:
-				printf("\n  [!] Invalid choice. Enter 01 to 04.\n");
+				printf("  [!] Invalid choice. Enter 01 to 04.\n");
 		}
 	} while(choice != 4);
 
 	return 0;
-};
+}
 
-//Helper: display Header()
+//Helper: display Header
 void displayHeader() {
 	printf("\n  %-6s %-20s %-10s %-15s\n", "ID", "Name", "Salary", "Date Joined");
 	printf("  %-6s %-20s %-10s %-15s\n",
@@ -88,16 +116,17 @@ void displayEmployee(Employee e) {
 	      );
 }
 
-//e. Declare function: inputEmployee()
-void inputEmployee(Employee list[], int *n) {
-	int count, i, j, duplicate;
+//e. Declare function: inputEmployees()
+void inputEmployees(Employee list[], int *n) {
+	int count;
+	int i, j, duplicate;
 
 	printf("\n  How many employees to enter? ");
-	printf("\(Max %d): ", MAX);
+	printf("Max %d: ", MAX);
 	scanf("%d", &count);
 
 	if(count <= 0 || count > MAX) {
-		printf("\n  [!] Invalid. Must be between 01 and %d.\n", MAX);
+		printf("\n  [!] Invalid. Must be betweeb 01 and %d.\n", MAX);
 		return;
 	}
 
@@ -110,16 +139,17 @@ void inputEmployee(Employee list[], int *n) {
 			printf("  Employee ID: ");
 			scanf("%d", &list[i].emp_id);
 
-			for(j = 0; j < i; i++) {
+			for(j = 0; j < i; j++) {
 				if(list[j].emp_id == list[i].emp_id) {
 					printf("  [!] ID %d already exists. Enter another.\n", list[i].emp_id);
+
 					duplicate = 1;
 					break;
 				}
 			}
 		} while(duplicate);
 
-		//input NAME + check validate
+		//input NAME
 		printf("  Name        : ");
 		scanf(" %[^\n]", list[i].name);
 
@@ -136,17 +166,15 @@ void inputEmployee(Employee list[], int *n) {
 		do {
 			printf("  Join Month  : ");
 			scanf("%d", &list[i].joined.month);
-
 			if(list[i].joined.month < 1 || list[i].joined.month > 12) {
-				printf("  [!] Month muse be between 01 and 12.\n");
+				printf("  [!] Month must be between 01 and 12.\n");
 			}
 		} while(list[i].joined.month < 1 || list[i].joined.month > 12);
 
 		do {
 			printf("  Join Day    : ");
 			scanf("%d", &list[i].joined.day);
-
-			if(list[i].joined.day < 1 || list[i].joined.day >31) {
+			if(list[i].joined.day < 1 || list[i].joined.day > 31) {
 				printf("  [!] Day must be between 01 and 31.\n");
 			}
 		} while(list[i].joined.day < 1 || list[i].joined.day > 31);
@@ -154,7 +182,6 @@ void inputEmployee(Employee list[], int *n) {
 		do {
 			printf("  Join Year   : ");
 			scanf("%d", &list[i].joined.year);
-
 			if(list[i].joined.year < 1900 || list[i].joined.year > 2100) {
 				printf("  [!] Invalid year.\n");
 			}
@@ -162,7 +189,7 @@ void inputEmployee(Employee list[], int *n) {
 	}
 
 	*n = count;
-	printf("\n  [OK] %d employee(s) added successfully!\n", count);
+	printf("\n  [OK] %d employee(s) added successfully !\n.", count);
 }
 
 //f. Declare function: increaseSalary()
@@ -171,19 +198,19 @@ void increaseSalary(Employee list[], int n) {
 	float increase;
 
 	if(n == 0) {
-		printf(" [!] No employee data. Please add employees first.\n");
+		printf("\n  [!] No employee data. Please add employees first.\n");
+
 		return;
 	}
 
-	printf("\n  Applying salary increase...\n");
+	printf("\n Applying salary increase...\n");
 	displayHeader();
 
-	for(i = 0; i < n; i++) {
-		//ap dung quy tac tang luong
+	for(i - 0; i < n; i++) {
 		if(list[i].salary <= 2000) {
 			increase = list[i].salary * 0.15f; //tang 15%
 		} else if(list[i].salary <= 5000) {
-			increase = list[i].salary * 0.10f; // tang 10%
+			increase = list[i].salary * 0.10f; //tang 10%
 		} else {
 			increase = 0; //khong tang
 		}
@@ -198,12 +225,23 @@ void increaseSalary(Employee list[], int n) {
 //g. Declare function: display10Years()
 void display10Years(Employee list[], int n) {
 	int i, found;
-	int currentYear = 2025; //nam hien tai
+	int currentYear = 2025; // nam hien tai
+
+	if(n == 0) {
+		printf("\n  [!] No employee data. Please add employee first.\n");
+
+		return;
+	}
+
+	found = 0;
+	printf("\n  Employee who completed 10 years: \n");
+	displayHeader();
 
 	for(i = 0; i < n; i++) {
-		int yearsWorked = currentYear - list[i].joined.year;
+		//tinh so nam lam viec
+		int yearWorked = currentYear - list[i].joined.year;
 
-		if(yearsWorked >= 10) {
+		if(yearWorked >= 10) {
 			displayEmployee(list[i]);
 			found++;
 		}
