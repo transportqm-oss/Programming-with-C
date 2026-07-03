@@ -42,7 +42,7 @@ int main() {
 			case 3:
 				sortFile(file1);
 				sortFile(file2);
-				printf("\n  Sort contens: \n");
+				printf("\n Sorted contents: \n");
 				displayFile(file1);
 				displayFile(file2);
 				break;
@@ -53,7 +53,7 @@ int main() {
 				displayFile(merged);
 				break;
 			case 6:
-				printf("\n  Goodbye!\n\n");
+				printf("\n Goodbye!\n\n");
 				break;
 			default:
 				printf("\n  [!] Invalid choice. Enter 01 to 06.\n");
@@ -68,7 +68,7 @@ void bubbleSort(int arr[], int n) {
 	int i, j, temp;
 
 	for(i = 0; i < n; i++) {
-		for(j = 0; j < n - i - 1; j++) {
+		for(j = 0; j < n - 1 - i; j++) {
 			if(arr[j] > arr[j + 1]) {
 				temp = arr[j];
 				arr[j] = arr[j + 1];
@@ -83,23 +83,23 @@ void inputAndSave(char filename[], int seriesNum) {
 	FILE *fp;
 	int count, i, num;
 
-	//input value
+	//input number of value
 	printf("\n How many numbers in Series %d? ", seriesNum);
 	scanf("%d", &count);
 
 	if(count <= 0 || count > MAX) {
-		printf("  [!] Invalid. Must be between 1 and %d.\n", MAX);
+		printf("  [!] Invalid. Must be between 01 and %d.\n", MAX);
 		return;
 	}
 
-	//open file and overwrite it
+	//open and overwrite data
 	fp = fopen(filename, "w");
 	if(fp == NULL) {
 		printf("  [!] Cannot open file %s.\n", filename);
 		return;
 	}
 
-	//ghi so luong phan tu vao dong dau file
+	//Ghi so luong phan tu vao dong dau file
 	fprintf(fp, "%d\n", count);
 
 	//nhap va ghi tung so vao file
@@ -119,14 +119,14 @@ void sortFile(char filename[]) {
 	FILE *fp;
 	int arr[MAX], count, i;
 
-	//mo file de doc
+	//open file to read
 	fp = fopen(filename, "r");
 	if(fp == NULL) {
-		printf("  [!] Cannot open file %s.\n", filename);
+		printf("  [! Cannot open file %s.\n", filename);
 		return;
 	}
 
-	//doc so luong phan tu o dong dau
+	//read number of value in first line
 	fscanf(fp, "%d", &count);
 
 	//doc tung so vao mang
@@ -135,7 +135,7 @@ void sortFile(char filename[]) {
 	}
 	fclose(fp);
 
-	//sort mang
+	//sort array
 	bubbleSort(arr, count);
 
 	//ghi lai file voi mang da sort
@@ -160,10 +160,10 @@ void mergeAndSort(char file1[], char file2[], char fileOut[]) {
 	int arr[MAX * 2];
 	int count1, count2, totalCount, i;
 
-	//doc file 1
+	//read file1
 	fp1 = fopen(file1, "r");
 	if(fp1 == NULL) {
-		printf("  [!] Cannot open file %s\n", file1);
+		printf("  [!] Cannot open file %s.\n", file1);
 		return;
 	}
 	fscanf(fp1, "%d", &count1);
@@ -172,7 +172,7 @@ void mergeAndSort(char file1[], char file2[], char fileOut[]) {
 	}
 	fclose(fp1);
 
-	//doc file 2 -> noi tiep vao arr sau file 1
+	//doc file2 -> noi tiep vao arr sau file1
 	fp2 = fopen(file2, "r");
 	if(fp2 == NULL) {
 		printf("  [!] Cannot open file %s.\n", file2);
@@ -190,7 +190,7 @@ void mergeAndSort(char file1[], char file2[], char fileOut[]) {
 	//sort mang da merge
 	bubbleSort(arr, totalCount);
 
-	//ghi vao file moi
+	//save to file
 	fpOut = fopen(fileOut, "w");
 	if(fpOut == NULL) {
 		printf("  [!] Cannot open file %s.\n", fileOut);
@@ -202,7 +202,7 @@ void mergeAndSort(char file1[], char file2[], char fileOut[]) {
 	}
 	fclose(fpOut);
 
-	printf("  [OK] Merged and sorted into: '%s'.\n", fileOut);
+	printf("  [OK] Merged and sorted into '%s'.\n", fileOut);
 }
 
 //Declare function: doc va hien thi noi dung file
@@ -213,18 +213,18 @@ void displayFile(char filename[]) {
 	fp = fopen(filename, "r");
 	if(fp == NULL) {
 		printf("  [!] Cannot open file %s.\n", filename);
-		return;
 	}
 
 	fscanf(fp, "%d", &count);
 
-	printf("\n Contents of '%s' (%d numbers): \n", filename, count);
+	printf("\n  Contens of '%s' (%d numbers): \n", filename, count);
 	printf("  ");
 	for(i = 0; i < count; i++) {
 		fscanf(fp, "%d", &num);
 		printf("%d ", num);
 	}
 	printf("\n");
+
 	fclose(fp);
 }
 
