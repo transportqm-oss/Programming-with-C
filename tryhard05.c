@@ -128,7 +128,7 @@ void capNhatXepLoai(SinhVien ds[], int n) {
 //declare function: nhap danh sach sinh vien
 void nhapDanhSach(SinhVien ds[], int *n) {
 	int count, i, j, duplicate;
-
+	
 	printf("\n  Nhap so luong sinh vien (Max %d): ", MAX);
 	scanf("%d", &count);
 
