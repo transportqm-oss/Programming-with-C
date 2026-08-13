@@ -1,17 +1,17 @@
-#include<stdio.h>
-#include<stdlib.h>
-#include<string.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
 #define MAX 100
 
 /*
-=========================================================
-HO TEN:
-MSSV:
-LOP:
-DE THI KET THUC HOC PHAN LAP TRINH C
-Quan ly sinh vien
-=========================================================
+	=========================================================
+	HO TEN:
+	MSSV:
+	LOP:
+	DE THI KET THUC HOC PHAN LAP TRINH C
+	Quan ly sinh vien
+	=========================================================
 */
 
 //====================== DECLARE STRUCT ======================
@@ -24,13 +24,13 @@ typedef struct {
 	char xepLoai[20];
 } SinhVien;
 
-//====================== DECLARE PROTOTYPE ======================
+//===================== DEFINE PROTOTYPE =====================
 //INPUT
 void nhapDanhSach(SinhVien ds[], int *n);
 void nhap1SinhVien(SinhVien *sv);
 int kiemTraMaTrung(SinhVien ds[], int n, char ma[]);
 
-//TINH DIEM
+//SCORE
 float tinhDTB(SinhVien sv);
 char *xepLoaiTheo(float dtb);
 void capNhatXepLoai(SinhVien ds[], int n);
@@ -39,7 +39,7 @@ void capNhatXepLoai(SinhVien ds[], int n);
 void xuatDanhSach(SinhVien ds[], int n);
 void xuat1SinhVien(SinhVien sv);
 
-//SAP XEP
+//SORT
 void sapXepTheoDTBGiam(SinhVien ds[], int n);
 
 //SEARCH
@@ -49,44 +49,32 @@ void timKiemSinhVien(SinhVien ds[], int n);
 //REPORT
 void thongKeXepLoai(SinhVien ds[], int n);
 
+//Menu
+void menu();
+
 //EDIT - DELETE
 void suaSinhVien(SinhVien ds[], int n);
 void xoaSinhVien(SinhVien ds[], int *n);
 
-//FILE
+//FILE RECORD
 void luuFile(SinhVien ds[], int n);
 void docFile(SinhVien ds[], int *n);
 
+//====================== MAIN ======================
 int main() {
 	SinhVien ds[MAX];
 	int n = 0;
-	int chon;
+	int choice;
 
 	do {
-		//menu();
+		menu();
 
-		printf("\n");
-		printf("=========================================\n");
-		printf("     QUAN LY SINH VIEN\n");
-		printf("=========================================\n");
-		printf("1.  Nhap danh sach sinh vien\n");
-		printf("2.  Xuat danh sach sinh vien\n");
-		printf("3.  Sap xep theo DTB giam dan\n");
-		printf("4.  Tim sinh vien co DTB cao nhat\n");
-		printf("5.  Tim kiem sinh vien\n");
-		printf("6.  Thong ke xep loai\n");
-		printf("7.  Sua thong tin sinh vien\n");
-		printf("8.  Xoa thong tin sinh vien\n");
-		printf("9.  Luu file\n");
-		printf("10. Doc file\n");
-		printf("11. Thoat\n");
-		printf("=========================================\n");
 		printf("\nNhap lua chon: ");
-		scanf("%d", &chon);
+		scanf("%d", &choice);
 
-		switch(chon) {
+		switch(choice) {
 			case 1:
-				nhapDanhSach(ds, &n);;
+				nhapDanhSach(ds, &n);
 				break;
 			case 2:
 				xuatDanhSach(ds, n);
@@ -120,34 +108,34 @@ int main() {
 				printf("\nCam on da su dung chuong trinh!\n");
 				break;
 			default:
-				printf("\nLua chon khong hop le!\n");
+				printf("\nLua chon khong phu hop!\n");
 		}
-	} while(chon != 11);
+	} while(choice != 11);
 
 	return 0;
 }
 
-////Declare function: menu()
-//void menu() {
-//	printf("\n");
-//	printf("=========================================\n");
-//	printf("     QUAN LY SINH VIEN\n");
-//	printf("=========================================\n");
-//	printf("1.  Nhap danh sach sinh vien\n");
-//	printf("2.  Xuat danh sach sinh vien\n");
-//	printf("3.  Sap xep theo DTB giam dan\n");
-//	printf("4.  Tim sinh vien co DTB cao nhat\n");
-//	printf("5.  Tim kiem sinh vien\n");
-//	printf("6.  Thong ke xep loai\n");
-//	printf("7.  Sua thong tin sinh vien\n");
-//	printf("8.  Xoa thong tin sinh vien\n");
-//	printf("9.  Luu file\n");
-//	printf("10. Doc file\n");
-//	printf("11. Thoat\n");
-//	printf("=========================================\n");
-//}
+//Declare function: menu()
+void menu() {
+	printf("\n");
+	printf("=========================================\n");
+	printf("     QUAN LY SINH VIEN\n");
+	printf("=========================================\n");
+	printf("1.   Nhap danh sach sinh vien\n");
+	printf("2.   Xuat danh sach sinh vien\n");
+	printf("3.   Sap xep theo DTB giam dan\n");
+	printf("4.   Tim sinh vien co DTB cao nhat\n");
+	printf("5.   Tim kiem sinh vien\n");
+	printf("6.   Thong ke xep loai\n");
+	printf("7.   Sua thong tin sinh vien\n");
+	printf("8.   Xoa sinh vien\n");
+	printf("9.   Luu file\n");
+	printf("10.  Doc file\n");
+	printf("11.  Thoat\n");
+	printf("=========================================\n");
+}
 
-//Declare function: kiem tra trung Ma Sinh Vien / kiemTraMaTrung()
+//Declare function: kiem tra trung maSV / kiemTraMaTrung()
 int kiemTraMaTrung(SinhVien ds[], int n, char ma[]) {
 	int i;
 
@@ -160,20 +148,20 @@ int kiemTraMaTrung(SinhVien ds[], int n, char ma[]) {
 	return 0;
 }
 
-//Declare function: ham nhap mot sinh vien / nhap1SinhVien()
+//Declare function: nhap 01 sinh vien / nhap1SinhVien()
 void nhap1SinhVien(SinhVien *sv) {
 	getchar();
-
-	printf("Nhap ten sinh vien: ");
-	fgets(sv->tenSV, sizeof(sv->tenSV), stdin);
-	sv->tenSV[strcspn(sv->tenSV, "\n")] = 0;
 
 	printf("Nhap ma sinh vien: ");
 	fgets(sv->maSV, sizeof(sv->maSV), stdin);
 	sv->maSV[strcspn(sv->maSV, "\n")] = 0;
 
+	printf("Nhap ten sinh vien: ");
+	fgets(sv->tenSV, sizeof(sv->tenSV), stdin);
+	sv->tenSV[strcspn(sv->tenSV, "\n")] = 0;
+
 	do {
-		printf("Nhap diem Ly Thuyet (0-10): ");
+		printf("Nhap diem ly thuyet (0 - 10): ");
 		scanf("%f", &sv->diemLT);
 
 		if(sv->diemLT < 0 || sv->diemLT > 10) {
@@ -182,7 +170,7 @@ void nhap1SinhVien(SinhVien *sv) {
 	} while(sv->diemLT < 0 || sv->diemLT > 10);
 
 	do {
-		printf("Nhap diem Thuc Hanh (0-10): ");
+		printf("Nhap diem thuc hanh (0 - 10): ");
 		scanf("%f", &sv->diemTH);
 
 		if(sv->diemTH < 0 || sv->diemTH > 10) {
@@ -191,7 +179,7 @@ void nhap1SinhVien(SinhVien *sv) {
 	} while(sv->diemTH < 0 || sv->diemTH > 10);
 }
 
-//Declare function: ham nhap danh sach / nhapDanhSach()
+//Declare function: nhap danh sach sinh vien / nhapDanhSach()
 void nhapDanhSach(SinhVien ds[], int *n) {
 	int i;
 
@@ -222,26 +210,33 @@ void nhapDanhSach(SinhVien ds[], int *n) {
 	capNhatXepLoai(ds, *n);
 }
 
-//Declare function: ham tinh diem trung binh / tinhDTB()
+//Declare function: tinh diem trung binh / tinhDTB()
 float tinhDTB(SinhVien sv) {
 	return (sv.diemLT + sv.diemTH) / 2.0;
 }
 
-//Declare function: ham xep loai / xepLoaiTheo
+//Declare function: ham xep loai / xepLoaiTheo()
 char *xepLoaiTheo(float dtb) {
-	if(dtb >= 9)
+	if(dtb >= 9) {
 		return "Xuat sac";
-	if(dtb >= 8)
+	}
+
+	if(dtb >= 8) {
 		return "Gioi";
-	if(dtb >= 7)
+	}
+
+	if(dtb >= 7) {
 		return "Kha";
-	if(dtb >= 5)
+	}
+
+	if(dtb >= 5) {
 		return "Trung binh";
+	}
 
 	return "Yeu";
 }
 
-//Declare function: cap nhap diem trung binh va xep loai / capNhatXepLoai()
+//Declare function: ham cap nhap diem trung binh va xep loai / capNhatXepLoai()
 void capNhatXepLoai(SinhVien ds[], int n) {
 	int i;
 
@@ -269,33 +264,33 @@ void xuatDanhSach(SinhVien ds[], int n) {
 	int i;
 
 	if(n == 0) {
-		printf("\nDanh sach rong !\n");
+		printf("\nDanh sach rong!\n");
 		return;
 	}
 
-	printf("\n====================================================================================\n");
+	printf("\n==========================================================\n");
 
 	printf("%-12s %-25s %-10s %-10s %-10s %-15s\n",
-	       "Ma SV",
-	       "Ten SV",
+	       "MaSV",
+	       "TenSV",
 	       "LT",
 	       "TH",
 	       "DTB",
-	       "Xep loai");
+	       "Xep Loai"
+	      );
 
-	printf("====================================================================================\n");
+	printf("\n==========================================================\n");
 
 	for(i = 0; i < n; i++) {
 		xuat1SinhVien(ds[i]);
 	}
 
-	printf("====================================================================================\n");
+	printf("\n==========================================================\n");
 }
 
-//Declare function: ham sap xep giam dan theo diem trung binh / sapXepTheoDTBGiam()
+//Declare function: ham sap xep diemTB giam dan / sapXepTheoDTBGiam()
 void sapXepTheoDTBGiam(SinhVien ds[], int n) {
 	int i, j;
-
 	SinhVien temp;
 
 	for(i = 0; i < n - 1; i++) {
@@ -309,7 +304,7 @@ void sapXepTheoDTBGiam(SinhVien ds[], int n) {
 	}
 }
 
-//Declare function: ham tim sinh vien co diem trung binh cao nhat / timDiemCaoNhat()
+//Declare function: ham tim sinh vien co diemTB cao nhat / timDiemCaoNhat()
 void timDiemCaoNhat(SinhVien ds[], int n) {
 	int i;
 
@@ -329,12 +324,13 @@ void timDiemCaoNhat(SinhVien ds[], int n) {
 	printf("\n========== SINH VIEN CO DTB CAO NHAT ==========\n");
 
 	printf("%-12s %-25s %-10s %-10s %-10s %-15s\n",
-	       "Ma SV",
-	       "Ten SV",
+	       "MaSV",
+	       "TenSV",
 	       "LT",
 	       "TH",
 	       "DTB",
-	       "Xep loai");
+	       "Xep Loai"
+	      );
 
 	for(i = 0; i < n; i++) {
 		if(ds[i].dtb == max) {
@@ -345,7 +341,7 @@ void timDiemCaoNhat(SinhVien ds[], int n) {
 
 //Declare function: ham tim kiem sinh vien / timKiemSinhVien()
 void timKiemSinhVien(SinhVien ds[], int n) {
-	int chon;
+	int choice;
 	int i;
 	int timThay = 0;
 
@@ -357,16 +353,16 @@ void timKiemSinhVien(SinhVien ds[], int n) {
 	}
 
 	printf("\n===== TIM KIEM =====\n");
-	printf("1. Tim theo ma sinh vien\n");
-	printf("2. Tim theo ten sinh vien\n");
-	printf("3. Tim theo xep loai\n");
-
+	printf("1. Tim theo MaSV\n");
+	printf("2. Tim theo TenSV\n");
+	printf("3. Tim theo Xep loai\n");
+	printf("=====================\n");
 	printf("Nhap lua chon: ");
-	scanf("%d", &chon);
+	scanf("%d", &choice);
 
 	getchar();
 
-	switch(chon) {
+	switch(choice) {
 		case 1:
 			printf("Nhap ma sinh vien: ");
 			fgets(key, sizeof(key), stdin);
@@ -380,6 +376,7 @@ void timKiemSinhVien(SinhVien ds[], int n) {
 			}
 
 			break;
+
 		case 2:
 			printf("Nhap ten sinh vien: ");
 			fgets(key, sizeof(key), stdin);
@@ -393,6 +390,7 @@ void timKiemSinhVien(SinhVien ds[], int n) {
 			}
 
 			break;
+
 		case 3:
 			printf("Nhap xep loai: ");
 			fgets(key, sizeof(key), stdin);
@@ -406,6 +404,7 @@ void timKiemSinhVien(SinhVien ds[], int n) {
 			}
 
 			break;
+
 		default:
 			printf("Lua chon khong hop le!\n");
 			return;
@@ -419,6 +418,7 @@ void timKiemSinhVien(SinhVien ds[], int n) {
 //Declare function: ham thong ke xep loai / thongKeXepLoai()
 void thongKeXepLoai(SinhVien ds[], int n) {
 	int i;
+
 	int xs = 0;
 	int gioi = 0;
 	int kha = 0;
@@ -431,24 +431,25 @@ void thongKeXepLoai(SinhVien ds[], int n) {
 	}
 
 	for(i = 0; i < n; i++) {
-		if(strcmp(ds[i].xepLoai, "Xuat sac") == 0)
+		if(strcmp(ds[i].xepLoai, "Xuat sac") == 0) {
 			xs++;
-		else if(strcmp(ds[i].xepLoai, "Gioi") == 0)
+		} else if(strcmp(ds[i].xepLoai, "Gioi") == 0) {
 			gioi++;
-		else if(strcmp(ds[i].xepLoai, "Kha") == 0)
+		} else if(strcmp(ds[i].xepLoai, "Kha") == 0) {
 			kha++;
-		else if(strcmp(ds[i].xepLoai, "Trung binh") == 0)
+		} else if(strcmp(ds[i].xepLoai, "Trung binh") == 0) {
 			tb++;
-		else
+		} else {
 			yeu++;
+		}
 	}
 
 	printf("\n========== THONG KE XEP LOAI ==========\n");
-	printf("Xuat sac   : %d\n", xs);
-	printf("Gioi       : %d\n", gioi);
-	printf("Kha        : %d\n", kha);
-	printf("Trung binh : %d\n", tb);
-	printf("Yeu        : %d\n", yeu);
+	printf("Xuat sac    : %d\n", xs);
+	printf("Gioi        : %d\n", gioi);
+	printf("Kha         : %d\n", kha);
+	printf("Trung binh  : %d\n", tb);
+	printf("Yeu         : %d\n", yeu);
 }
 
 //Declare function: ham sua thong tin sinh vien / suaSinhVien()
@@ -491,14 +492,15 @@ void suaSinhVien(SinhVien ds[], int n) {
 
 			found = 1;
 
-			printf("\nCap nhat thanh cong !\n");
+			printf("\nCap nhat thanh cong!\n");
 
 			break;
 		}
 	}
 
-	if(!found)
+	if(!found) {
 		printf("\nKhong tim thay sinh vien!\n");
+	}
 }
 
 //Declare function: ham xoa sinh vien / xoaSinhVien()
@@ -514,6 +516,7 @@ void xoaSinhVien(SinhVien ds[], int *n) {
 	getchar();
 
 	printf("Nhap ma sinh vien can xoa: ");
+
 	fgets(ma, sizeof(ma), stdin);
 	ma[strcspn(ma, "\n")] = 0;
 
@@ -526,6 +529,7 @@ void xoaSinhVien(SinhVien ds[], int *n) {
 			(*n)--;
 
 			printf("\nDa xoa thanh cong!\n");
+
 			return;
 		}
 	}
@@ -533,9 +537,10 @@ void xoaSinhVien(SinhVien ds[], int *n) {
 	printf("\nKhong tim thay sinh vien!\n");
 }
 
-//Declare function: luu danh sach sinh vien ra file / luuFile()
+//Declare function: ham luu file / luuFile()
 void luuFile(SinhVien ds[], int n) {
 	FILE *f;
+
 	int i;
 
 	f = fopen("students.txt", "w");
@@ -561,9 +566,10 @@ void luuFile(SinhVien ds[], int n) {
 	printf("\nLuu file thanh cong!\n");
 }
 
-//Declare function: doc du lieu tu file / docFile()
+//Declare function: ham doc file / docFile()
 void docFile(SinhVien ds[], int *n) {
 	FILE *f;
+
 	int i;
 
 	f = fopen("students.txt", "r");
