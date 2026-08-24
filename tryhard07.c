@@ -21,7 +21,7 @@ typedef struct {
 } NhanVien;
 
 NhanVien ds[MAX];
-int soluong = 0; //So nhan vien hienco trong danh sach
+int soLuong = 0; //So nhan vien hien co trong danh sach
 
 /*DEFINE PROTOTYPE*/
 
@@ -31,7 +31,7 @@ void hienThiMenu(void);
 
 void nhapDanhSach(void);
 void xuatDanhSach(void);
-void sapXepGiamDanTheoLuong(void);
+void sapxepGiamDanTheoLuong(void);
 void timNhanVienLuongCaoNhat(void);
 void timKiemNhanVien(void);
 void thongKeXepLoaiKPI(void);
@@ -64,7 +64,7 @@ int main() {
 				xuatDanhSach();
 				break;
 			case 3:
-				sapXepGiamDanTheoLuong();
+				sapxepGiamDanTheoLuong();
 				break;
 			case 4:
 				timNhanVienLuongCaoNhat();
@@ -91,7 +91,7 @@ int main() {
 				printf("\n>> Cam on ban da su dung chuong trinh. Tam biet!\n");
 				break;
 			default:
-				printf(">> Lua chon khong hop le! Vui long chon lai (1-11).\n");
+				printf(">> Lua chon khong hop le! Vui long chon lai (01-11).\n");
 		}
 	} while(luaChon != 11);
 
@@ -121,10 +121,10 @@ void hienThiMenu(void) {
 	printf("10. Doc file\n");
 	printf("11. Thoat\n");
 	printf("\n---------------------------------------------------------\n");
-	printf("So luong nhan vien hien tai: %d\n", soluong);
+	printf("So luong nhan vien hien tai: %d\n", soLuong);
 }
 
-//Function Nhap mot chuoi khong duoc phep rong, gioi han do dai: nhapChuoiKhongRong()
+//Function: Nhap mot chuoi khong duoc phep rong, gioi han do dai: nhapChuoiKhongRong()
 void nhapChuoiKhongRong(char *chuoi, int gioiHan, const char *thongBao) {
 	int hopLe = 0;
 	char buffer[256];
@@ -141,8 +141,9 @@ void nhapChuoiKhongRong(char *chuoi, int gioiHan, const char *thongBao) {
 		}
 
 		int start = 0;
-		while(buffer[start] == ' ')
+		while(buffer[start] == ' ') {
 			start++;
+		}
 
 		if(strlen(buffer + start) == 0) {
 			printf(">> Loi: Du lieu khong duoc de trong! Vui long nhap lai.\n");
@@ -157,7 +158,7 @@ void nhapChuoiKhongRong(char *chuoi, int gioiHan, const char *thongBao) {
 	} while(!hopLe);
 }
 
-//Function Kiem tra chuoi co phai la so thuc hop le hay khong: kiemTraSoThuc()
+//Function: Kiem tra chuoi co phai la so thuc hop le hay khong: kiemTraSoThuc()
 int kiemTraSoThuc(const char *s, float *ketQua) {
 	char *end;
 	float val = strtof(s, &end);
@@ -175,7 +176,7 @@ int kiemTraSoThuc(const char *s, float *ketQua) {
 	return 1;
 }
 
-//Function Nhap so thuc trong khoang [min, max], co kiem tra hop le: nhapSoThucKhoang()
+//Function: Nhap so thuc trong khoang [min, max], co kiem tra hop le: nhapSoThucKhoang
 float nhapSoThucKhoang(const char *thongBao, float min, float max) {
 	char buffer[64];
 	float giaTri;
@@ -191,7 +192,7 @@ float nhapSoThucKhoang(const char *thongBao, float min, float max) {
 		}
 
 		if(giaTri < min || giaTri > max) {
-			printf(">> Loi: Gia tri phai nam trong khoang [%.2f, %.2f]!\n", min, max);
+			printf(">> Loi: Gia tri nam trong khoang [%.2f, %.2f]!\n", min, max);
 			continue;
 		}
 
@@ -201,7 +202,7 @@ float nhapSoThucKhoang(const char *thongBao, float min, float max) {
 	return giaTri;
 }
 
-//Function Kiem tra so dien thoai: kiemTraSDTHopLe()
+//Function: kiem tra so dien thoai: kiemTraSDTHopLe()
 int kiemTraSDTHopLe(const char *sdt) {
 	int i;
 	int len = strlen(sdt);
@@ -223,7 +224,7 @@ int kiemTraSDTHopLe(const char *sdt) {
 	return 1;
 }
 
-//Function nhap so dien thoai co kiem tra hop le: nhapSDTHopLe()
+//Function: nhap so dien thoai co kiem tra hop le: nhapSDTHopLe()
 void nhapSDTHopLe(char *sdt) {
 	char buffer[64];
 	int hopLe = 0;
@@ -238,7 +239,7 @@ void nhapSDTHopLe(char *sdt) {
 		}
 
 		if(!kiemTraSDTHopLe(buffer)) {
-			printf(">> Loi: So dien thoai khong hop le! Phai gom dung 10 chu so va bat dau bang 0.\n");
+			printf(">> Loi: So dien thoai khong hop le! Phai gom dung 10 chu so va bat dau bang 0!\n");
 			hopLe = 0;
 		} else {
 			strcpy(sdt, buffer);
@@ -247,25 +248,25 @@ void nhapSDTHopLe(char *sdt) {
 	} while(!hopLe);
 }
 
-//Function tim vi tri nhan vien theo ma, tra ve -1 neu khong tim thay: timViTriTheoMa()
+//Function: tim vi tri nhan vien theo ma, tra ve -1 neu khong tim thay: timViTriTheoMa()
 int timViTriTheoMa(const char *ma) {
 	int i;
 
-	for(i = 0; i < soluong; i++) {
+	for(i = 0; i < soLuong; i++) {
 		if(strcmp(ds[i].maNV, ma) == 0) {
-			return i;
+			return 1;
 		}
 	}
 
 	return -1;
 }
 
-//Function kiem tra ma nhan vien da ton tai hay chua: KiemTraTrungMa()
-int KiemTraTrungMa(const char *ma) {
+//Function: kiem tra ma nhan vien da ton tai hay chua: kiemTraTrungMa()
+int kiemTraTrungMa(const char *ma) {
 	return (timViTriTheoMa(ma) != -1);
 }
 
-//Function nhap ma nhan vien, co kiem tra trung: nhapMaHopLe()
+//Function: nhap ma nhan vien, co kiem tra trung: nhapMaHopLe()
 void nhapMaHopLe(char *ma, int boQuaTrung) {
 	char buffer[64];
 	int hopLe = 0;
@@ -290,7 +291,7 @@ void nhapMaHopLe(char *ma, int boQuaTrung) {
 			continue;
 		}
 
-		if(!boQuaTrung && KiemTraTrungMa(buffer)) {
+		if(!boQuaTrung && kiemTraTrungMa(buffer)) {
 			printf(">> Loi: Ma nhan vien '%s' da ton tai! Vui long nhap ma khac.\n", buffer);
 			continue;
 		}
@@ -300,7 +301,7 @@ void nhapMaHopLe(char *ma, int boQuaTrung) {
 	} while(!hopLe);
 }
 
-//Function xep loai theo KPI: xepLoaiKPI()
+//Function: xep loai theo KPI: xepLoaiKPI()
 const char* xepLoaiKPI(float kpi) {
 	if(kpi >= 90) return "Xuat sac";
 	if(kpi >= 80) return "Tot";
@@ -309,13 +310,13 @@ const char* xepLoaiKPI(float kpi) {
 	return "Yeu";
 }
 
-//Function In tieu da bang: header()
+//Function: In tieu da bang: header()
 void header(void) {
 	printf("%-8s %-20s %-12s %-20s %-12s %-8s %-10s\n", "MaNV", "TenNV", "SDT", "Address", "Luong", "KPI", "Xep loai");
 	printf("============================================================================================\n");
 }
 
-//Function In mot nhan vien: inMotNhanVien()
+//Function: In mot nhan vien: inMotNhanVien()
 void inMotNhanVien(const NhanVien *nv) {
 	printf("%-8s %-20s %-12s %-20s %-12.2f %-8.1f %-10s\n",
 	       nv->maNV,
@@ -324,7 +325,8 @@ void inMotNhanVien(const NhanVien *nv) {
 	       nv->diachi,
 	       nv->luong,
 	       nv->kpi,
-	       xepLoaiKPI(nv->kpi));
+	       xepLoaiKPI(nv->kpi)
+	      );
 }
 
 /*========================= FUNCTION 01: NHAP =========================*/
@@ -333,19 +335,19 @@ void nhapDanhSach(void) {
 	int soLuongNhap;
 	char buffer[64];
 
-	if(soluong >= MAX) {
+	if(soLuong >= MAX) {
 		printf(">> Danh sach da day (toi da %d nhan vien!)\n", MAX);
 		return;
 	}
 
 	do {
-		printf("Nhap so luong nhan vien can them: ");
+		printf("NHap so luong nhan vien can them: ");
 		fgets(buffer, sizeof(buffer), stdin);
 		if(sscanf(buffer, "%d", &soLuongNhap) != 1 || soLuongNhap <= 0) {
 			printf(">> Loi: Vui long nhap so nguyen duong!\n");
 			soLuongNhap = -1;
-		} else if(soluong + soLuongNhap > MAX) {
-			printf(">> Loi: Vuot qua gioi han %d nhan vien (Con lai %d cho trong)!\n", MAX, MAX - soluong);
+		} else if(soLuong + soLuongNhap > MAX) {
+			printf(">> Loi: Vuot qua gioi han %d nhan vien (Con lai %d cho trong)!\n", MAX, MAX - soLuong);
 			soLuongNhap = -1;
 		}
 	} while(soLuongNhap == -1);
@@ -359,10 +361,10 @@ void nhapDanhSach(void) {
 		nhapSDTHopLe(nv.sdt);
 		nhapChuoiKhongRong(nv.diachi, LEN_DC, "Nhap dia chi: ");
 		nv.luong = nhapSoThucKhoang("Nhap luong (>0): ", 0.01f, 1000000000.0f);
-		nv.kpi = nhapSoThucKhoang("Nhap KPI (0 - 100): ", 0.0f, 100.0f);
+		nv.kpi = nhapSoThucKhoang("Nhap KPI (0-100): ", 0.0f, 100.0f);
 
-		ds[soluong++] = nv;
-		printf(">> Da them nhan vien '%s' thanh cong !\n", nv.tenNV);
+		ds[soLuong++] = nv;
+		printf(">> Da them nhan vien '%s' thanh cong!\n", nv.tenNV);
 	}
 }
 
@@ -370,34 +372,32 @@ void nhapDanhSach(void) {
 void xuatDanhSach(void) {
 	int i;
 
-	if(soluong == 0) {
+	if(soLuong == 0) {
 		printf(">> Danh sach nhan vien dang trong!\n");
-
 		return;
 	}
 
-	printf("\n============================ DANH SACH NHAN VIEN (%d nguoi) ============================\n", soluong);
+	printf("\n============================ DANH SACH NHAN VIEN (%d nguoi) ============================\n", soLuong);
 	header();
 
-	for(i = 0; i < soluong; i++) {
+	for(i = 0; i < soLuong; i++) {
 		inMotNhanVien(&ds[i]);
 	}
 }
 
 /*========================= FUNCTION 03: SAP XEP GIAM DAN =========================*/
-void sapXepGiamDanTheoLuong(void) {
+void sapxepGiamDanTheoLuong(void) {
 	int i, j;
 
-	if(soluong == 0) {
+	if(soLuong == 0) {
 		printf(">> Danh sach nhan vien dang trong, khong the sap xep!\n");
-
 		return;
 	}
 
-	for(i = 0; i < soluong - 1; i++) {
+	for(i = 0; i < soLuong - 1; i++) {
 		int viTriMax = i;
 
-		for(j = i + 1; j < soluong; j++) {
+		for(j = i + 1; j < soLuong; j++) {
 			if(ds[j].luong > ds[viTriMax].luong) {
 				viTriMax = j;
 			}
@@ -410,7 +410,7 @@ void sapXepGiamDanTheoLuong(void) {
 		}
 	}
 
-	printf(">> Sap xep theo luong giam dan da thanh cong!\n");
+	printf(">> Sap xep theo luong giam dan thanh cong!\n");
 	xuatDanhSach();
 }
 
@@ -418,17 +418,16 @@ void sapXepGiamDanTheoLuong(void) {
 void timNhanVienLuongCaoNhat(void) {
 	int i;
 
-	if(soluong == 0) {
+	if(soLuong == 0) {
 		printf(">> Danh sach nhan vien dang trong!\n");
-
 		return;
 	}
 
 	int viTriMax = 0;
 
-	for(i = 1; i < soluong; i++) {
+	for(i = 0; i < soLuong; i++) {
 		if(ds[i].luong > ds[viTriMax].luong) {
-			viTriMax = i;
+			viTriMax = 1;
 		}
 	}
 
@@ -441,9 +440,8 @@ void timNhanVienLuongCaoNhat(void) {
 void timKiemNhanVien(void) {
 	int i, j, k;
 
-	if(soluong == 0) {
+	if(soLuong == 0) {
 		printf(">> Danh sach nhan vien dang trong!\n");
-
 		return;
 	}
 
@@ -451,7 +449,7 @@ void timKiemNhanVien(void) {
 	char buffer[128];
 	int timThay = 0;
 
-	printf("\n--------- TIM KIEM NHAN VIEN ---------\n");
+	printf("\n------------ TIM KIEM NHAN VIEN ------------\n");
 	printf("1. Theo ma nhan vien\n");
 	printf("2. Theo ten nhan vien\n");
 	printf("3. Theo so dien thoai\n");
@@ -463,11 +461,10 @@ void timKiemNhanVien(void) {
 
 	if(sscanf(buffer, "%d", &chon) != 1 || chon < 1 || chon > 6) {
 		printf(">> Lua chon khong hop le!\n");
-
 		return;
 	}
 
-	printf("\n--------- KET QUA TIM KIEM ---------\n");
+	printf("\n------------ KET QUA TIM KIEM ------------\n");
 
 	if(chon == 1) {
 		char ma[LEN_MA];
@@ -485,7 +482,7 @@ void timKiemNhanVien(void) {
 		}
 	} else if(chon == 2) {
 		char tuKhoa[LEN_TEN];
-		printf("Nhap ten (hoac mot phan ten) can tim: ");
+		printf("nhap ten (hoac mot phan ten) can tim: ");
 		fgets(buffer, sizeof(buffer), stdin);
 		buffer[strcspn(buffer, "\n")] = '\0';
 		strncpy(tuKhoa, buffer, LEN_TEN - 1);
@@ -499,7 +496,7 @@ void timKiemNhanVien(void) {
 		tuKhoaThuong[t] = '\0';
 
 		header();
-		for(i = 0; i < soluong; i++) {
+		for(i = 0; i < soLuong; i++) {
 			char tenThuong[LEN_TEN];
 			int j2;
 
@@ -522,7 +519,7 @@ void timKiemNhanVien(void) {
 		sdt[LEN_SDT - 1] = '\0';
 
 		header();
-		for(i = 0; i < soluong; i++) {
+		for(i = 0; i < soLuong; i++) {
 			if(strcmp(ds[i].sdt, sdt) == 0) {
 				inMotNhanVien(&ds[i]);
 				timThay = 1;
@@ -538,14 +535,13 @@ void timKiemNhanVien(void) {
 
 		char tuKhoaThuong[LEN_DC];
 		int t;
-
 		for(t = 0; tuKhoa[t]; t++) {
 			tuKhoaThuong[t] = tolower((unsigned char) tuKhoa[t]);
 		}
 		tuKhoaThuong[t] = '\0';
 
 		header();
-		for(k = 0; k < soluong; k++) {
+		for(k = 0; k < soLuong; k++) {
 			char dcThuong[LEN_DC];
 
 			for(j = 0; ds[k].diachi[j]; j++) {
@@ -558,13 +554,12 @@ void timKiemNhanVien(void) {
 				timThay = 1;
 			}
 		}
-
 	} else if(chon == 5) {
 		float min = nhapSoThucKhoang("Nhap luong toi thieu: ", 0, 1000000000.0f);
 		float max = nhapSoThucKhoang("Nhap luong toi da: ", min, 1000000000.0f);
 
 		header();
-		for(i = 0; i < soluong; i++) {
+		for(i = 0; i < soLuong; i++) {
 			if(ds[i].luong >= min && ds[i].luong <= max) {
 				inMotNhanVien(&ds[i]);
 				timThay = 1;
@@ -575,7 +570,7 @@ void timKiemNhanVien(void) {
 		float max = nhapSoThucKhoang("Nhap KPI toi da (0-100): ", min, 100);
 
 		header();
-		for(i = 0; i < soluong; i++) {
+		for(i = 0; i < soLuong; i++) {
 			if(ds[i].kpi >= min && ds[i].kpi <= max) {
 				inMotNhanVien(&ds[i]);
 				timThay = 1;
@@ -592,9 +587,8 @@ void timKiemNhanVien(void) {
 void thongKeXepLoaiKPI(void) {
 	int i;
 
-	if(soluong == 0) {
+	if(soLuong == 0) {
 		printf(">> Danh sach nhan vien dang trong!\n");
-
 		return;
 	}
 
@@ -604,7 +598,7 @@ void thongKeXepLoaiKPI(void) {
 	int trungBinh = 0;
 	int yeu = 0;
 
-	for(i = 0; i < soluong; i++) {
+	for(i = 0; i < soLuong; i++) {
 		float k = ds[i].kpi;
 		if(k >= 90) {
 			xuatSac++;
@@ -619,21 +613,20 @@ void thongKeXepLoaiKPI(void) {
 		}
 	}
 
-	printf("\n==== THONG KE XEP LOAI THEO KPI (Tong %d nhan vien) ====\n", soluong);
+	printf("\n==== THONG KE XEP LOAI THEO KPI (Tong %d nhan vien) ====\n", soLuong);
 	printf("%-22s %-10s %-10s\n", "Xep Loai", "So luong", "Ty le (%)");
 	printf("----------------------------------------------------------\n");
-	printf("%-22s %-10d %-10.1f\n", "Xuat sac (>= 90)", xuatSac, 100.0 * xuatSac / soluong);
-	printf("%-22s %-10d %-10.1f\n", "Tot (80-89.9)", tot, 100.0 * tot / soluong);
-	printf("%-22s %-10d %-10.1f\n", "Kha (65-79.9)", kha, 100.0 * kha / soluong);
-	printf("%-22s %-10d %-10.1f\n", "Trung binh (50-64.9)", trungBinh, 100.0 * trungBinh / soluong);
-	printf("%-22s %-10d %-10.1f\n", "Yeu (<50)", yeu, 100.0 * yeu / soluong);
+	printf("%-22s %-10d %-10.1f\n", "Xuat sac (>= 90)", xuatSac, 100.0 * xuatSac / soLuong);
+	printf("%-22s %-10d %-10.1f\n", "Tot (80-89.9)", tot, 100.0 * tot / soLuong);
+	printf("%-22s %-10d %-10.1f\n", "Kha (65-79.9)", kha, 100.0 * kha / soLuong);
+	printf("%-22s %-10d %-10.1f\n", "Trung binh (50-64.9)", trungBinh, 100.0 * trungBinh / soLuong);
+	printf("%-22s %-10d %-10.1f\n", "Yeu (<50)", yeu, 100.0 * yeu / soLuong);
 }
 
 /*========================= FUNCTION 07: SUA THONG TIN =========================*/
 void suaThongTinNhanVien(void) {
-	if(soluong == 0) {
+	if(soLuong == 0) {
 		printf(">> Danh sach nhan vien dang trong!\n");
-
 		return;
 	}
 
@@ -644,10 +637,9 @@ void suaThongTinNhanVien(void) {
 	strncpy(ma, buffer, LEN_MA - 1);
 	ma[LEN_MA - 1] = '\0';
 
-	int vt = timViTriTheoMa(ma);
+	int vt =  timViTriTheoMa(ma);
 	if(vt == -1) {
-		printf(">> Khong tim thay nhan vien co ma '%s' can sua !\n", ma);
-
+		printf(">> Khong tim thay nhan vien co ma '%s' can sua!\n", ma);
 		return;
 	}
 
@@ -706,9 +698,8 @@ void suaThongTinNhanVien(void) {
 void xoaNhanVien(void) {
 	int i;
 
-	if(soluong == 0) {
+	if(soLuong == 0) {
 		printf(">> Danh sach nhan vien dang trong!\n");
-
 		return;
 	}
 
@@ -722,11 +713,10 @@ void xoaNhanVien(void) {
 	int vt = timViTriTheoMa(ma);
 	if(vt == -1) {
 		printf(">> Khong tim thay nhan vien co ma '%s'!\n", ma);
-
 		return;
 	}
 
-	printf("\nThong tin nhan vien se bi xoa:\n");
+	printf("\nThong tin nhan vien se bi xoa: \n");
 	header();
 	inMotNhanVien(&ds[vt]);
 
@@ -735,10 +725,10 @@ void xoaNhanVien(void) {
 	fgets(xacNhan, sizeof(xacNhan), stdin);
 
 	if(tolower((unsigned char) xacNhan[0]) == 'y') {
-		for(i = vt; i < soluong - 1; i++) {
+		for(i = vt; i < soLuong - 1; i++) {
 			ds[i] = ds[i + 1];
 		}
-		soluong--;
+		soLuong--;
 		printf(">> Xoa nhan vien thanh cong!\n");
 	} else {
 		printf(">> Da huy thao tac xoa.\n");
@@ -749,23 +739,21 @@ void xoaNhanVien(void) {
 void luuRaFile(void) {
 	int i;
 
-	if(soluong == 0) {
+	if(soLuong == 0) {
 		printf(">> Danh sach nhan vien dang trong, khong co gia tri de luu!\n");
-
 		return;
 	}
 
 	FILE *f = fopen(TEN_FILE, "w");
 	if(f == NULL) {
 		printf(">> Loi: Khong the mo file '%s' de ghi!\n", TEN_FILE);
-
 		return;
 	}
 
-	fprintf(f, "%d\n", soluong);
-	for(i = 0; i < soluong; i++) {
+	fprintf(f, "%d\n", soLuong);
+	for(i = 0; i < soLuong; i++) {
 		fprintf(f, "%s|%s|%s|%s|%.2f|%.2f\n",
-		        ds[i].maNV,
+		        ds[i].tenNV,
 		        ds[i].tenNV,
 		        ds[i].sdt,
 		        ds[i].diachi,
@@ -774,16 +762,15 @@ void luuRaFile(void) {
 	}
 
 	fclose(f);
-	printf(">> Da luu %d nhan vien vao file '%s' thanh cong!\n", soluong, TEN_FILE);
+	printf(">> Da luu %d nhan vien vao file '%s' thanh cong!\n", soLuong, TEN_FILE);
 }
 
 /*========================= FUNCTION 10: DOC FILE =========================*/
-void docFile() {
+void docFile(void) {
 	FILE *f = fopen(TEN_FILE, "r");
 
 	if(f == NULL) {
 		printf(">> Loi: Khong tim thay file '%s'! Vui long luu du lieu truoc.\n", TEN_FILE);
-
 		return;
 	}
 
@@ -842,7 +829,7 @@ void docFile() {
 	}
 
 	fclose(f);
-	soluong = demDoc;
-	printf(">> Da doc %d nhan vien tu file '%s' thanh cong !\n", soluong, TEN_FILE);
+	soLuong = demDoc;
+	printf(">> Da doc %d nhan vien tu file '%s' thanh cong!\n", soLuong, TEN_FILE);
 	xuatDanhSach();
 }
