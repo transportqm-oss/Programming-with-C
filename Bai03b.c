@@ -41,7 +41,13 @@ int main() {
 
 	//BAI 02
 //	getFactorialV1();
-	getFactorialV2(6); //1.2.3.4.5.6 =270
+//	getFactorialV2(6); //1.2.3.4.5.6 =270
+//	int result = getFactorialV3(); //Ham tra ve lue, khai bao bien result de nhan value
+//	printf("Result: %d\n", result);
+//	printf("Result: %d\n", getFactorialV3()); //day la value acc ngam trong do, in acc la hien than qua ten ham
+
+	getFactorialV4(5); //Ngam tra ve 120, khong in, neu in khong re-use duoc tot nhat
+	printf("Result: %d\n", getFactorialV4(5));
 
 	return 0;
 }
@@ -58,6 +64,7 @@ int sumIntegerList() {
 }
 
 //Declare Function for BAI 02
+//Ham loai 01
 void getFactorialV1() {
 	int n, acc = 1;
 	//0 danh cho tong don, tich thi ban dau te nhat la 1. Sau do 1 nhan voi ai cung khong anh huong
@@ -77,6 +84,7 @@ void getFactorialV1() {
 	printf("%d! = %d\n", n, acc);
 }
 
+//Ham loai 02
 void getFactorialV2(int n) {
 	int acc = 1;
 	//0 danh cho tong don, tich thi ban dau te nhat la 1. Sau do 1 nhan voi ai cung khong anh huong
@@ -92,4 +100,42 @@ void getFactorialV2(int n) {
 
 	//return acc; do ham nay khong return, thi phai in ra !!1
 	printf("%d! = %d\n", n, acc);
+}
+
+//Ham loai 03
+int getFactorialV3() {
+	int n, acc = 1;
+
+	printf("Input a number (>= 0) to get the factorial: ");
+	scanf("%d", &n);
+	//co kha nang nhap lung tung, se cap nhap tinh nang validation
+	if(n == 0 || n == 1) {
+		acc = 1;
+	} else {
+		for(int i = 2; i <= n; i++) {
+			acc *= i; //acc = acc * i;
+		}
+	}
+
+	//return acc; //Do ham khong return, thi phai in ra!!! -> VIET THE NAY THI KHONG RA DUOC VALUE
+
+	//return acc; do ham nay khong return, thi phai in ra!!!
+	printf("%d! = %d\n", n, acc); //Khong nen IN khi ham rea ve gia tri !!!
+	return acc;
+}
+
+//Ham loai 04
+int getFactorialV4(int n) {
+	int acc = 1;
+
+	if(n == 0 || n == 1) {
+		acc = 1;
+	} else {
+		for(int i = 2; i <= n; i++) {
+			acc *= i; //acc = acc * i;
+		}
+	}
+
+	//printf("%d! = %d\n", n, acc); //Khong nen IN khi ham rea ve gia tri !!!
+	return acc;
 }
