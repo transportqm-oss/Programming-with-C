@@ -31,14 +31,14 @@ int getFactorialV4(int n) {
 
 	if(n == 0 || n == 1) {
 		return 1; //biet ngay 0! = 1! = 1, thoat chuong trinh
-	} else {
-		for(int i = 2; i <= n; i++) {
-			acc *= i; //acc = acc * i;
-		}
-
-		//printf("%d! = %d\n", n, acc); //Khong nen IN khi ham rea ve gia tri !!!
-		return acc;
 	}
+
+	for(int i = 2; i <= n; i++) {
+		acc *= i; //acc = acc * i;
+	}
+
+	//printf("%d! = %d\n", n, acc); //Khong nen IN khi ham rea ve gia tri !!!
+	return acc;
 
 	printf("Cau lenh test xem lenh return co toi duoc dong printf nay khong!!!\n");
 	//Cau lenh nay the hien CPU khong cham toi duoc, do lenh RETURN da dung o tren
