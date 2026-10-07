@@ -10,8 +10,7 @@ int main() {
 	scanf("%d", &n);
 
 	if(n <= 0) {
-		printf("Error: Number must be greater than 0!\n");
-		return 1;
+		printf("LOI: Number must be greater than 0!\n");
 	}
 
 	int sum = 0;
@@ -19,7 +18,7 @@ int main() {
 		sum += getFactorial(i);
 	}
 
-	printf("The sum of factorial 01 to %d is: %d\n", n, sum);
+	printf("Sum of factorial from 1! to %d! is: %d\n", n, sum);
 
 	return 0;
 }
@@ -33,4 +32,6 @@ int getFactorial(int n) {
 	}
 
 	return result;
+
 }
+
