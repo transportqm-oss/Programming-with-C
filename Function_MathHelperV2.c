@@ -20,7 +20,7 @@ int main() {
 	//CHUA BANG 05 THI KHONG CHO THOAT, CON DUNG THI CON LAM, NEU KHAC 5 THI CON LAM
 	do {
 		printMenu();
-		printf("Please choose 1..5: ");
+		printf("Please choose (1 - 5): ");
 		scanf("%d", &choice);
 
 		switch(choice) { //if choice la may thi lam gi ???
@@ -65,7 +65,7 @@ void printMenu() {
 void computeDiskArea() {
 	float radius, area;
 	printf("You choose to compute the disk area\n");
-	printf("Please input a radius(>0): ");
+	printf("Please input a radius(> 0): ");
 	scanf("%f", &radius);
 	//area = 3.14 * radius * radius;
 	//area = 3.14 * pow(radius, 2); //ham tinh dien tich bang thu vien math.h
